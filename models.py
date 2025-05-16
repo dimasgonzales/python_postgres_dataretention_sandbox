@@ -137,15 +137,8 @@ class PostgresTableModel:
 
         
         db_connection.commit()
-
-
-        with db_connection.cursor() as cursor:
-            cursor.execute(f"DROP TABLE IF EXISTS {self.schema}.{self.table_name}")
-            db_connection.commit()
     
     def _delete_records(self, db_connection):
         with db_connection.cursor() as cursor:
             cursor.execute(f"DELETE FROM {self.schema}.{self.table_name} WHERE condition")
             db_connection.commit()
-
-
