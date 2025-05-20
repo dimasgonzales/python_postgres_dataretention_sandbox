@@ -17,3 +17,17 @@ services:
       timeout: 5s
       retries: 5
 
+  prune_server:
+    build: ./apps/prune_server
+    container_name: prune_server
+    environment:
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgresdb
+      DB_PORT: 5432
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    depends_on:
+      - postgres
